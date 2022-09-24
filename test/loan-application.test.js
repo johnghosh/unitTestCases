@@ -1,9 +1,4 @@
 import { html, fixture, expect } from '@open-wc/testing';
-
-import '../loan-application.js';
-
-describe('LoanApplication', () => {
-  import { html, fixture, expect } from '@open-wc/testing';
 import '../loan-application.js';
 import { stub ,spy} from 'sinon';
 describe('LoanApplication', () => {
@@ -33,5 +28,4 @@ describe('LoanApplication', () => {
     expect(spyFunc.calledOnce).to.be.true;
   })
   // Write test cases inside this block
-});
 });

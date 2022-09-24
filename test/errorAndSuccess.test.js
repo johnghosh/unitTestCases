@@ -1,5 +1,5 @@
-import { html, fixture, expect } from '@open-wc/testing';
-// import { stub } from 'sinon';
+import { html, fixture, expect, assert } from '@open-wc/testing';
+ import { stub , spy} from 'sinon';
 import '../src/SuccessAndError/Success.js';
 import '../src/SuccessAndError/Error.js';
 
@@ -19,6 +19,12 @@ describe('Success screen ', () => {
   it("Customer details Renders",()=>{
     expect(element).to.be.an('HTMLElement');
   });
+  it("_toHome function check",()=>{
+    const save = spy(element,"_toHome");
+    element._toHome();
+    expect(save.calledOnce).to.be.true;
+    expect(save.calledWith('')).to.be.false;
+  });
 });
 
 describe('error screen', () => {
@@ -36,6 +42,11 @@ describe('error screen', () => {
   });
   it("Customer details Renders",()=>{
     expect(element).to.be.an('HTMLElement');
+  });
+  it("_toHome function check for Error",()=>{
+    const save = spy(element,"_toHome");
+    element._toHome();
+    expect(save.calledOnce).to.be.true;
   });
   // Write test cases inside this block
 });

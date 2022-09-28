@@ -21,9 +21,11 @@ describe('Success screen ', () => {
   });
   it("_toHome function check",()=>{
     const save = spy(element,"_toHome");
-    element._toHome();
-    expect(save.calledOnce).to.be.true;
-    expect(save.calledWith('')).to.be.false;
+    let button = element.shadowRoot.querySelector('.home-btn');
+    button.click();
+    element.updateComplete.then(() => {
+    expect(save).to.be.calledOnce;
+  });
   });
 });
 
@@ -45,8 +47,12 @@ describe('error screen', () => {
   });
   it("_toHome function check for Error",()=>{
     const save = spy(element,"_toHome");
-    element._toHome();
-    expect(save.calledOnce).to.be.true;
+    let button = element.shadowRoot.querySelector('.home-btn');
+    button.click();
+    element.updateComplete.then(() => {
+    expect(save).to.be.calledOnce;
+  });
   });
   // Write test cases inside this block
 });
+

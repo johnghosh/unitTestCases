@@ -42,10 +42,13 @@ describe('Basic details', () => {
     //expect(capStub).to.be.calledOnce;
     //expect(capStub).to.be.calledOnce;
   })
-  it("called toDashboard",()=>{
+  it("called toDashboard",async()=>{
     const spyFunc = spy(el,"_toDashboard");
-    el._toDashboard();
-    expect(spyFunc.calledOnce).to.be.true;
+    let button = el.shadowRoot.querySelector('.btn-previous');
+    button.click();
+   el.updateComplete.then(() => {
+    expect(spyFunc).to.be.calledOnce;
+  });
   })
 });
 

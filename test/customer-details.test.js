@@ -8,7 +8,6 @@ describe('customer details', () => {
   // Write test cases inside this block
   let element;
   let shdRoot;
-  let base = "https://loanfeapi.herokuapp.com";
   //const request = new Request(request)
   beforeEach(async()=>{
     element = await fixture('<customer-details></customer-details>');
@@ -23,43 +22,23 @@ describe('customer details', () => {
   it("Customer details Renders",()=>{
     expect(element).to.be.an('HTMLElement');
   });
-  it("_toEmidetails function test",()=>{
-    // element.submitHandler();
-    // sandbox.assert.calledOnce(lement.submitHandler);
-
-
-    let save = stub(element,"_toEmidetails");
+  it("submitHandler function test",()=>{
+    let save = stub(element,"submitHandler");
     let result = '';
-    save.onFirstCall().returns(result);
-    // save.restore();
-    // assert.calledWith(save,result)
+    let data = {}
+    save.withArgs(data).returns(result);
+    expect(element.submitHandler(data)).to.be.equal('')
   })
   it("_toEmidetails function check",()=>{
-    // element.submitHandler();
-    // sandbox.assert.calledOnce(lement.submitHandler);
-
-
     const save = spy(element,"_toEmidetails");
-    element._toEmidetails();
-    expect(save.calledOnce).to.be.true;
+    let button = element.shadowRoot.querySelector('.backbg-btn-color');
+    button.click();
+    element.updateComplete.then(() => {
+    expect(save).to.be.calledOnce;
+  });
     // save.restore();
     // assert.calledWith(save,result)
   });
-  // it('should return the movie that was added', (done) => {
-  //   const options = {
-  //     method: 'post',
-  //     body: {
-  //     },
-  //     json: true,
-  //     url: `${base}/submit-form`
-  //   };
-  //   request(options, (err, res, body) => {
-  //     res.statusCode.should.equal(200);
-  //     res.headers['content-type'].should.contain('application/json');
-  //     body.status.should.eql('success');
-  //     done();
-  //   });
-  // });
   // it("Mock and stub api call", (done) =>{
   //   var obj = { id: 123 };
   //   const scope = nock("https://loanfeapi.herokuapp.com")
@@ -76,3 +55,4 @@ describe('customer details', () => {
   //     });
   // });
 });
+

@@ -16,11 +16,19 @@ describe('loan-header', () => {
   it("Customer details Renders",()=>{
     expect(element).to.be.an('HTMLElement');
   });
-  it("localeChanged function check",()=>{
-    const save = stub(element,"localeChanged");
-    let arr= 'en-GB'
-    save.onFirstCall().returns('en-GB')
-    expect(element.localeChanged()).to.be.equal(arr);
+  it("localeChanged function check for nl-NL",async()=>{
+    element.shadowRoot.querySelector('#nl-NL').click();
+    let cls = element.shadowRoot.querySelector('.en-GB');
+     
+    let chkClass =cls.classList.contains('btn-cursor')
+    expect(chkClass).to.be.equal(true);
+  });
+  it("localeChanged function check for en-GB",async()=>{
+    element.shadowRoot.querySelector('#en-GB').click();
+    let cls = element.shadowRoot.querySelector('.nl-NL');
+     
+    let chkClass =cls.classList.contains('btn-cursor')
+    expect(chkClass).to.be.equal(true);
   });
   // Write test cases inside this block
 });

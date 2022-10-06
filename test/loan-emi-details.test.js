@@ -4,13 +4,12 @@ import { stub ,spy} from 'sinon';
 describe('Loan EMI details', () => {
   let element;
   let shdRoot;
-  // let obj ={
-  //   interestRate:40,
-  //   monthlyEMI:100
-  // }
+  let obj ={
+    interestRate:40,
+    monthlyEMI:100
+  }
   beforeEach(async()=>{
-    //const data = localStorage.setItem("emi",obj);
-    element = await fixture('<loanemi-details ._data=${localStorage.setItem("emi",{  interestRate:40,monthlyEMI:100})}></loanemi-details>');
+    element = await fixture('<loanemi-details ._data=localStorage.setItem("emi",{  interestRate:40,monthlyEMI:100})></loanemi-details>');
     shdRoot = element.shadowRoot;
   })
   afterEach(async()=>{
@@ -21,12 +20,6 @@ describe('Loan EMI details', () => {
     expect(element).to.be.an('HTMLElement');
     
   });
-  // it("called _toBasicDetails function",()=>{
-  //   const spyFunc = spy(element,"_toBasicDetails");
-  //   element._toBasicDetails();
-  //   expect(spyFunc.calledOnce).to.be.true;
-  // })
-  // Write test cases inside this block
 
   it("_toBasicDetails check",()=>{
     const save = spy(element,"_toBasicDetails");
